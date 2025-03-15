@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // eslint-disable-next-line react/display-name
-const Book = ({ book }: any) => {
+const Book = ({ item }: any) => {
   return (
     <>
       {/* アニメーションスタイル */}
@@ -28,16 +28,16 @@ const Book = ({ book }: any) => {
         <a className="cursor-pointer shadow-2xl duration-300 hover:translate-y-1 hover:shadow-none">
           <Image
             priority
-            src={book.thumbnail}
-            alt={book.title}
+            src={item.thumbnail.url}
+            alt={item.title}
             width={450}
             height={350}
             className="rounded-t-md"
           />
           <div className="px-4 py-4 bg-slate-100 rounded-b-md">
-            <h2 className="text-lg font-semibold">{book.title}</h2>
+            <h2 className="text-lg font-semibold">{item.title}</h2>
             <p className="mt-2 text-lg text-slate-600">この本は○○...</p>
-            <p className="mt-2 text-md text-slate-700">値段：{book.price}円</p>
+            <p className="mt-2 text-md text-slate-700">値段：{item.price}円</p>
           </div>
         </a>
 
