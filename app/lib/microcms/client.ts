@@ -1,3 +1,4 @@
+import { ItemType } from '@/app/types/types';
 import { createClient } from 'microcms-js-sdk';
 
 export const client = createClient({
@@ -6,7 +7,7 @@ export const client = createClient({
 });
 
 export const getAllContents = async () => {
-    const allItems = await client.getList({
+    const allItems = await client.getList<ItemType>({
         endpoint: "next-lesson"
     });
 
