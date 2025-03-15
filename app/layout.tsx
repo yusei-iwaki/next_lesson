@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
+import { NextAuthProviders } from "./lib/next-auth/provider";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -17,7 +18,7 @@ import Header from "./components/Header";
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
   subsets: ["latin"],
-  weight: "400"
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -33,8 +34,10 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={notoSansJP.className}>
-        <Header />
-        {children}
+        <NextAuthProviders>
+          <Header />
+          {children}
+        </NextAuthProviders>
       </body>
     </html>
   );
