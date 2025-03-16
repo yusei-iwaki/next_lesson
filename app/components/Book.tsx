@@ -18,6 +18,31 @@ const Book = ({ item }: ItemProps) => {
   const user = session?.user;
   const router = useRouter();
 
+  const startCheckout = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: item.title,
+            price: item.price,
+          }),
+        }
+      );
+
+      const responseData = await response.json();
+
+      if (responseData) {
+        router.push(responseData.checkout_url);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
   const handleCansel = () => {
     setShowModal(false);
   };
@@ -33,6 +58,7 @@ const Book = ({ item }: ItemProps) => {
       router.push("/login");
     } else {
       // Stripeで決済する
+      startCheckout();
     }
   };
 
