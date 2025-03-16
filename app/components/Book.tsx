@@ -15,7 +15,7 @@ type ItemProps = {
 const Book = ({ item }: ItemProps) => {
   const [showModal, setShowModal] = useState(false);
   const { data: session } = useSession();
-  const user = session?.user;
+  const user: any = session?.user;
   const router = useRouter();
 
   const startCheckout = async () => {
@@ -30,6 +30,8 @@ const Book = ({ item }: ItemProps) => {
           body: JSON.stringify({
             title: item.title,
             price: item.price,
+            userId: user?.id,
+            bookId: item.id,
           }),
         }
       );

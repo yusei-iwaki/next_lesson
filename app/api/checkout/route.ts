@@ -4,12 +4,16 @@ import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(req: Request, res: Response) {
-    const {title, price} = await req.json();
+    const {title, price, bookId, userId} = await req.json();
     console.log(title, price);
 
     try {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
+            metadata: {
+                bookId: bookId,
+            },
+            client_reference_id: userId,
             line_items: [
                 {
                     price_data: {
