@@ -12,4 +12,13 @@ export const getAllContents = async () => {
     });
 
     return allItems;
+};
+
+export const getDetailContent = async (contentId: string) => {
+  const detailContent = await client.getListDetail<ItemType>({
+    endpoint: "next-lesson",
+    contentId,
+  });
+
+  return detailContent
 }
