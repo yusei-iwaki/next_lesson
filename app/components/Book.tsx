@@ -9,10 +9,11 @@ import { useRouter } from "next/navigation";
 
 type ItemProps = {
   item: ItemType;
+  isPurchased: boolean;
 };
 
 // eslint-disable-next-line react/display-name
-const Book = ({ item }: ItemProps) => {
+const Book = ({ item, isPurchased }: ItemProps) => {
   const [showModal, setShowModal] = useState(false);
   const { data: session } = useSession();
   const user: any = session?.user;
@@ -50,7 +51,11 @@ const Book = ({ item }: ItemProps) => {
   };
 
   const handlePurchaseClick = () => {
-    setShowModal(true);
+    if (isPurchased) {
+      alert(`${item.title}は既に購入済みです`);
+    } else {
+      setShowModal(true);
+    }
   };
 
   const handlePurcahseConfirm = () => {

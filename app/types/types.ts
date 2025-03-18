@@ -8,4 +8,20 @@ type ItemType = {
     updatedAt: string;
     };
 
-export type { ItemType };
+type User = {
+    id: string;
+    name?: string;
+    email?: string;
+    image?: string;
+};
+
+type Purchase = {
+    id: string;
+    userId: string;
+    bookId: string;
+    title: string;
+    createdAt: string;
+    user: User;
+};
+
+export type { ItemType, User, Purchase };
