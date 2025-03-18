@@ -22,12 +22,10 @@ export default async function Home() {
       { cache: "no-store" }
     );
     const purchasesData = await response.json();
-    // console.log(purchasesData);
 
     purchaseBookIds = purchasesData.map(
       (purchaseBook: Purchase) => purchaseBook.bookId
     );
-    // console.log(purchaseBookIds);
   }
 
   return (
