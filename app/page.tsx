@@ -8,7 +8,6 @@ import { nextAuthOptions } from "./lib/next-auth/options";
 import { User } from "./types/types";
 import { Purchase } from "./types/types";
 
-// eslint-disable-next-line @next/next/no-async-client-component
 export default async function Home() {
   const { contents } = await getAllContents();
   const session = await getServerSession(nextAuthOptions);
