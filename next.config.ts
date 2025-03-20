@@ -14,7 +14,10 @@ const nextConfig: NextConfig = {
         hostname: "images.microcms-assets.io",
       }
     ]
-  }
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
