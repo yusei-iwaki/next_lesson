@@ -5,7 +5,7 @@ import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 // 購入履歴の保存
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
 
     const {sessionId} = await req.json();
 
@@ -14,16 +14,16 @@ export async function POST(req: Request, res: Response) {
 
         const existingPurcahse = await prisma.purchase.findFirst({
             where: {
-                userId: session.client_reference_id!,
-                bookId: session.metadata?.bookId!,
+                userId: session.client_reference_id ?? "default_value", 
+                bookId: session.metadata?.bookId ?? "default_value",  
             }
         });
 
         if(!existingPurcahse) {
             const purchase = await prisma.purchase.create({
                 data: {
-                    userId: session.client_reference_id!,
-                    bookId: session.metadata?.bookId!,
+                    userId: session.client_reference_id ?? "default_value", 
+                    bookId: session.metadata?.bookId ?? "default_value",  
                 }
             });
 

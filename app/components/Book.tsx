@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { ItemType } from "../types/types";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
