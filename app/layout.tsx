@@ -3,16 +3,8 @@ import { Geist, Geist_Mono, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import { NextAuthProviders } from "./lib/next-auth/provider";
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
+import { Suspense } from "react";
+import Loading from "./loading";
 
 // Noto Sans JP
 const notoSansJP = Noto_Sans_JP({
@@ -36,7 +28,7 @@ export default function RootLayout({
       <body className={notoSansJP.className}>
         <NextAuthProviders>
           <Header />
-          {children}
+          <Suspense fallback={<Loading />}>{children}</Suspense>
         </NextAuthProviders>
       </body>
     </html>
